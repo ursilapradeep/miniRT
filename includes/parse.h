@@ -13,8 +13,12 @@
 #ifndef PARSE_H
 # define PARSE_H
 
+//parsing
 void parse_scene(char *scene_path);
+char *trim_line(char *line);
+int is_skippable_line(char *line);
 
+// parsing errors
 void parse_error(char *msg);
 
 #endif

@@ -28,6 +28,7 @@ SRC := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/hooking/hook.c \
 	$(SRC_DIR)/rendering/render.c \
 	$(SRC_DIR)/parsing/parse_scene.c \
+	$(SRC_DIR)/parsing/parse_lines.c \
 	$(SRC_DIR)/error_handler/parse_error.c 
 OBJ := $(SRC:.c=.o)
 

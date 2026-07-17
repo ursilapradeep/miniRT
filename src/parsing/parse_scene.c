@@ -6,17 +6,20 @@
 void parse_scene(char *scene_path)
 {
     int fd;
-    char *line ;
+    char *line;
+    char *trimmed;
 
     fd = open(scene_path, O_RDONLY);
     if (fd < 0)
-    {
         parse_error("file doesnt exist or is not a valid file");
-        exit(1);
-    }
     line = get_next_line(fd);
     while(line)
     {
+        trimmed = trim_line(line);
+        if(!is_skippable_line(trimmed))
+        {
+            // create tokens from the trimmed line
+        }
         line = get_next_line(fd);
     }
     close(fd);
