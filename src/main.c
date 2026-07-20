@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spaipur- <spaipur-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: uvadakku <uvadakku@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 12:03:57 by uvadakku          #+#    #+#             */
-/*   Updated: 2026/07/17 15:27:03 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/07/20 14:38:01 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "parse.h"
+#include "rt.h"
 
 int create_image(t_mlx *mlx)
 {
@@ -83,13 +84,16 @@ t_mlx  *start_mlx(void)
 int main(int argc, char **argv)
 {
     t_mlx *mlx;
+    t_scene *scene;
 
     if (argc != 2)
     {
         printf("usage: ./miniRT scenes/scene.rt\n");
         return (1);
     }
-    parse_scene(argv[1]);
+    scene = parse_scene(argv[1]);
+    if (!scene)
+        return (1);
     mlx = start_mlx();
     if (!mlx)
         return (1);

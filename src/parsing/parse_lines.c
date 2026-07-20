@@ -38,18 +38,19 @@ char **create_tokens(char *line)
     return (tokens);
 }
 
-void validate_token(char **tokens)
+int validate_token(char **tokens)
 {
     int expected_count;
     int actual_count;
 
     if (!tokens || !tokens[0])
-        parse_error("Invalid tokenized line");
+       return (parse_error("Invalid tokenized line"), 0);
     expected_count = get_expected_token_count(tokens[0]);
     if (expected_count == 0)
-        parse_error("Unknown object type");
+        return (parse_error("Unknown object type"), 0);
     actual_count = count_tokens(tokens);
     if (actual_count != expected_count)
-        parse_error("Invalid token count for object");
+        return (parse_error("Invalid token count for object"), 0);
+    return (1);
 }
 

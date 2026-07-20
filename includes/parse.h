@@ -3,24 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spaipur- <spaipur-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: uvadakku <uvadakku@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 11:54:47 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/07/20 13:05:18 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/07/20 17:54:27 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-#include "objects.h"
+# include "../includes/objects.h"
+
+typedef struct s_ambient
+{
+    double ratio;
+    int color;
+} t_ambient;
+
+typedef struct s_camera
+{
+    t_vec3 origin;
+    t_vec3 direction;
+    double fov;
+} t_camera;
+
+typedef struct s_light
+{
+    t_vec3 origin;
+    double brightness;
+    int color;
+} t_light;
+
+typedef enum e_obj_type
+{
+    OBJ_SPHERE,
+    OBJ_PLANE,
+    OBJ_CYLINDER,
+} t_obj_type;
+
+typedef struct s_object
+{
+    t_obj_type type;
+    void *data; //point to sphere or plane or cylinder   
+    struct s_object *next;
+}t_object;
+
+typedef struct s_scene
+{
+    t_ambient ambient;
+    t_camera camera;
+    t_light light;
+    t_object *object;
+}t_scene;
+
+t_scene *parse_scene(const char *path);
+void     free_scene(t_scene *scene);
 
 //parsing
-void parse_scene(char *scene_path);
 char *trim_line(char *line);
 int is_skippable_line(char *line);
 char **create_tokens(char *line);
-void validate_token(char **tokens);
+int  validate_token(char **tokens);
+int  dispatch_scene_parsing(t_scene *scene, char **tokens);
+int  parse_ambient(t_scene *scene, char **tokens);
+int  parse_camera(t_scene *scene, char **tokens);
+int  parse_light(t_scene *scene, char **tokens);
+int  parse_sphere(t_scene *scene, char **tokens);
+int  parse_plane(t_scene *scene, char **tokens);
+int  parse_cylinder(t_scene *scene, char **tokens);
 void validate_color(t_color color);
 void validate_vector(t_vec3 vector);
 

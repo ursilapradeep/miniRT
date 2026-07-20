@@ -28,9 +28,12 @@ SRC := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/hooking/hook.c \
 	$(SRC_DIR)/rendering/render.c \
 	$(SRC_DIR)/parsing/parse_scene.c \
+	$(SRC_DIR)/parsing/parse_elements.c \
+	$(SRC_DIR)/parsing/parse_types.c \
 	$(SRC_DIR)/parsing/parse_lines.c \
 	$(SRC_DIR)/parsing/parse_line_utils.c \
 	$(SRC_DIR)/error_handler/parse_error.c \
+	$(SRC_DIR)/garbage_collector/free_scene.c \
 	$(SRC_DIR)/garbage_collector/free_tokens.c
 OBJ := $(SRC:.c=.o)
 
