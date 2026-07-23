@@ -6,7 +6,7 @@
 /*   By: uvadakku <uvadakku@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 11:54:47 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/07/21 16:09:50 by uvadakku         ###   ########.fr       */
+/*   Updated: 2026/07/23 17:36:12 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ typedef struct s_ambient
     t_color color;
     
 } t_ambient;
+
+
+typedef struct s_atof
+{
+	float	integer_part;
+	float	fraction;
+	float	divisor;
+	int		sign;
+} t_atof;
 
 typedef struct s_camera
 {

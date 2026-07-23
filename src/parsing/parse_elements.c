@@ -6,7 +6,7 @@
 /*   By: uvadakku <uvadakku@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 16:28:29 by uvadakku          #+#    #+#             */
-/*   Updated: 2026/07/21 16:19:44 by uvadakku         ###   ########.fr       */
+/*   Updated: 2026/07/23 17:42:09 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int ft_err_handler(t_scene *scene, const char *msg)
     return (0);
 }
 
-
 int parse_ambient(t_scene *scene, char **tokens)
 {
     float   ratio;
@@ -32,14 +31,14 @@ int parse_ambient(t_scene *scene, char **tokens)
     if (scene->ambient.is_set)
         return ft_err_handler(scene, ERR_OVER_AMBIENTS);
     // 2. Token count must be exactly 3: A ratio color
-    if (array_size(tokens) != 3)
+    if (array_size(tokens) != 3) 
         return ft_err_handler(scene, ERR_INVALID_PARAM);
     // 3. Parse ratio
     if (float_parser(tokens[1], &ratio))
         return ft_err_handler(scene, ERR_AMBIENT_RATIO);
     if (validate_ratio(ratio))
         return ft_err_handler(scene, ERR_AMBIENT_RATIO);
-    // 4. Parse color
+    // 4. Parse color --> not done
     if (color_parser(tokens[2], &color))
         return ft_err_handler(scene, ERR_INVALID_COLOR);
     // 5. Store into scene
