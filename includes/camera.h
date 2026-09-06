@@ -6,7 +6,7 @@
 /*   By: us <us@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 15:58:56 by us                #+#    #+#             */
-/*   Updated: 2026/09/01 20:36:12 by us               ###   ########.fr       */
+/*   Updated: 2026/09/06 11:35:22 by us               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void camera_translate(t_camera *camera, t_vec3 axis, double amount);
 
 void camera_rotate_yaw(t_camera *camera, double angle);
 void camera_rotate_pitch(t_camera *camera, double angle);
-void camera_rotate_roll(t_camera *camera, double angle);
 
 #endif

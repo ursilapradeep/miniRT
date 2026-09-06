@@ -6,7 +6,7 @@
 /*   By: us <us@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 16:24:26 by us                #+#    #+#             */
-/*   Updated: 2026/09/01 20:36:36 by us               ###   ########.fr       */
+/*   Updated: 2026/09/06 11:35:25 by us               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,3 @@ void camera_rotate_pitch(t_camera *camera, double angle)
     camera->direction = vec3_normalize(vec3_add(camera->direction, new_direction));
 }
 
-void camera_rotate_roll(t_camera *camera, double angle)
-{
-    t_camera_basis basis;
-    t_vec3 new_direction;
-
-    basis = camera_get_basis(camera);
-    new_direction = vec3_scale(basis.forward, angle);
-    camera->direction = vec3_normalize(vec3_add(camera->direction, new_direction));
-}
