@@ -1,29 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   draw_internal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/16 12:10:59 by uvadakku          #+#    #+#             */
-/*   Updated: 2026/09/07 15:26:21 by uvadakku         ###   ########.fr       */
+/*   Created: 2026/01/21 20:03:57 by ybutkov           #+#    #+#             */
+/*   Updated: 2026/09/07 12:54:26 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#ifndef DRAW_INTERNAL_H
+# define DRAW_INTERNAL_H
 
-void	setup_hooks(t_app *app)
-{
-	mlx_hook(app->mlx->win, 2, 1L << 0, handle_key, app);
-	mlx_mouse_hook(app->mlx->win, handle_mouse, app);
-	mlx_hook(app->mlx->win, 17, 0, handle_close, app);
-}
+# include "rt.h"
 
-void	destroy_app(t_app *app)
+typedef struct s_line_draw
 {
-	if (app == NULL)
-		return ;
-	if (app->scene != NULL)
-		free_scene(app->scene);
-	destroy_mlx(app->mlx);
-}
+	t_mlx	*mlx;
+	int		x0;
+	int		y0;
+	int		x1;
+	int		y1;
+	int		color;
+}			t_line_draw;
+
+typedef struct s_coord_info
+{
+	int		x;
+	int		y;
+	int		decimals;
+}			t_coord_info;
+
+typedef struct s_line_algo
+{
+	int		x0;
+	int		y0;
+	int		dx;
+	int		dy;
+	int		sx;
+	int		sy;
+	int		err;
+}			t_line_algo;
+
+#endif

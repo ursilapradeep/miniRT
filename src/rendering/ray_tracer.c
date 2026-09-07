@@ -6,7 +6,7 @@
 /*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 11:17:32 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/09/07 11:25:49 by uvadakku         ###   ########.fr       */
+/*   Updated: 2026/09/07 15:26:42 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_ray make_camera_ray(const t_scene *scene, int x, int y)
     ray.direction = vec3_add(ray.direction,
         vec3_scale(up,
             ((1.0 - (((double)y + 0.5) / (double)WIN_HEIGHT) * 2.0)) * fov));
-    ray.direction = vec3_add(ray.direction, forward);
     ray.direction = vec3_normalize(ray.direction);
     return (ray);
 }

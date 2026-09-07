@@ -6,7 +6,7 @@
 #    By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/03 12:00:06 by spaipur-          #+#    #+#              #
-#    Updated: 2026/09/07 11:40:31 by uvadakku         ###   ########.fr        #
+#    Updated: 2026/09/07 15:27:14 by uvadakku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,16 @@ endif
 SRC := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/hooking/hook.c \
 	$(SRC_DIR)/hooking/key_handler.c \
+	$(SRC_DIR)/hooking/object_key_handler.c \
+	$(SRC_DIR)/hooking/mouse_handler.c \
 	$(SRC_DIR)/rendering/render.c \
 	$(SRC_DIR)/rendering/render_frame.c \
 	$(SRC_DIR)/camera/camera.c \
 	$(SRC_DIR)/camera/camera_move.c \
 	$(SRC_DIR)/camera/camera_rotate.c \
+	$(SRC_DIR)/draw_func_window/draw_axes.c \
+	$(SRC_DIR)/draw_func_window/draw_axes_labels.c \
+	$(SRC_DIR)/draw_func_window/draw_axes_line.c \
 	$(SRC_DIR)/parsing/parse_scene.c \
 	$(SRC_DIR)/parsing/parse_elements.c \
 	$(SRC_DIR)/parsing/parse_line.c \
@@ -59,6 +64,7 @@ SRC := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/validation/parse_scene_validation.c \
 	$(SRC_DIR)/utils/vec3_math.c \
 	$(SRC_DIR)/utils/vec3_math1.c \
+	$(SRC_DIR)/utils/object_transform.c \
 	$(SRC_DIR)/rendering/ray_tracer.c \
 	$(SRC_DIR)/rendering/ray_sphere.c \
 	$(SRC_DIR)/rendering/ray_cylinder.c \
