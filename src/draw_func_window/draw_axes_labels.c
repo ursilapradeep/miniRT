@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   draw_axes_labels.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: us <us@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:03:36 by ybutkov           #+#    #+#             */
-/*   Updated: 2026/09/07 12:54:37 by uvadakku         ###   ########.fr       */
+/*   Updated: 2026/09/08 11:17:52 by us               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void put_number(t_mlx *mlx, int x, int y, double value)
+static void	put_number(t_mlx *mlx, int x, int y, double value)
 {
-	char text[32];
+	char	text[32];
 
 	snprintf(text, sizeof(text), "%.2f", value);
 	mlx_string_put(mlx->mlx, mlx->win, x, y, 0xFFFFFF, text);
 }
 
-static void put_axis_labels(t_app *app)
+static void	put_axis_labels(t_app *app)
 {
 	mlx_string_put(app->mlx->mlx, app->mlx->win, WIN_WIDTH - 75, 18,
 		0xFFFFFF, "Camera axes");
@@ -32,9 +32,9 @@ static void put_axis_labels(t_app *app)
 		0x0000FF, "Z");
 }
 
-void draw_axes_labels(t_app *app)
+void	draw_axes_labels(t_app *app)
 {
-	t_camera *camera;
+	t_camera	*camera;
 
 	if (app == NULL || app->mlx == NULL || app->scene == NULL)
 		return ;

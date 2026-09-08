@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+         #
+#    By: us <us@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/03 12:00:06 by spaipur-          #+#    #+#              #
-#    Updated: 2026/09/07 15:27:14 by uvadakku         ###   ########.fr        #
+#    Updated: 2026/09/08 10:08:45 by us               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,13 @@ UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
 
-MLX_DIR := .minilibx_opengl
-MLX_TGZ := minilibx_macos_opengl.tgz
+MLX_DIR := minilibx_opengl_20191021
 MLX_INC := -I$(MLX_DIR)
 MLX_LIB := -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 else
 
 MLX_DIR := minilibx-linux
+MLX_ARCHIVE := minilibx-linux.tgz
 MLX_INC := -I$(MLX_DIR)
 MLX_LIB := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
 
@@ -79,34 +79,34 @@ OBJ := $(SRC:.c=.o)
 
 all: $(NAME)
 
-
-ifeq ($(UNAME_S),Darwin)
-$(MLX_DIR):
-	mkdir -p $@
-	tar -xzf $(MLX_TGZ) --strip-components=1 -C $@
-endif
-
-$(NAME): $(OBJ) $(LIBFT_A) | $(MLX_DIR)
-	$(MAKE) -C $(MLX_DIR)
+$(NAME): $(OBJ) $(LIBFT_A) mlx
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(MLX_LIB) -o $@
+
+mlx:
+	@if [ "$(UNAME_S)" = "Darwin" ]; then \
+		$(MAKE) -C $(MLX_DIR); \
+	else \
+		if [ ! -d "$(MLX_DIR)" ] || [ ! -f "$(MLX_DIR)/Makefile" ]; then \
+			mkdir -p $(MLX_DIR); \
+			tar -xzf $(MLX_ARCHIVE) --strip-components=1 -C $(MLX_DIR); \
+		fi; \
+		$(MAKE) -C $(MLX_DIR); \
+	fi
 
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)
 
-%.o: %.c | $(MLX_DIR)
+%.o: %.c
 	$(CC) $(CFLAGS) -I$(INC_DIR) $(MLX_INC) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
 	$(MAKE) -C $(LIBFT_DIR) clean
+	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) -C $(MLX_DIR) clean; fi
 
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
-
-ifeq ($(UNAME_S),Darwin)
-	rm -rf $(MLX_DIR)
-endif
 
 re: fclean all
 

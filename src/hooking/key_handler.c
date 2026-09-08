@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: us <us@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 17:39:05 by us                #+#    #+#             */
-/*   Updated: 2026/09/07 18:27:19 by uvadakku         ###   ########.fr       */
+/*   Updated: 2026/09/08 10:09:50 by us               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static bool	handle_move_key(int keycode, t_camera *camera)
 {
 	if (keycode == KEY_UP)
 		camera_move_up(camera, CAM_STEP);
-	else if (keycode == KEY_PITCH_AOWN)
+	else if (keycode == KEY_PITCH_DOWN)
 		camera_move_up(camera, -CAM_STEP);
 	else if (keycode == KEY_LEFT)
 		camera_move_left(camera, -CAM_STEP);

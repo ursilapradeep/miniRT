@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_axes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: us <us@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:03:52 by ybutkov           #+#    #+#             */
-/*   Updated: 2026/09/07 12:54:36 by uvadakku         ###   ########.fr       */
+/*   Updated: 2026/09/08 11:21:54 by us               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void	draw_line_internal(t_line_draw *line);
 
-static void project_axis(const t_camera *camera, t_vec3 axis, int *screen_x,
+static void	project_axis(const t_camera *camera, t_vec3 axis, int *screen_x,
 	int *screen_y)
 {
-	t_camera_basis basis;
-	double	x_proj;
-	double	y_proj;
+	t_camera_basis	basis;
+	double			x_proj;
+	double			y_proj;
 
 	basis = camera_get_basis(camera);
 	x_proj = vec3_dot(axis, basis.right);
