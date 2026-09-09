@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: us <us@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 17:39:05 by us                #+#    #+#             */
-/*   Updated: 2026/09/08 10:09:50 by us               ###   ########.fr       */
+/*   Updated: 2026/09/09 10:44:23 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ static bool	handle_move_key(int keycode, t_camera *camera)
 
 static bool	handle_rotate_key(int keycode, t_camera *camera)
 {
-	if (keycode == KEY_YAW_A)
+	if (keycode == KEY_YAW_S)
 		camera_rotate_pitch(camera, -0.1);
-	else if (keycode == KEY_YAW_C)
+	else if (keycode == KEY_YAW_D)
 		camera_rotate_pitch(camera, 0.1);
-	else if (keycode == KEY_PITCH_C)
+	else if (keycode == KEY_PITCH_W)
 		camera_rotate_yaw(camera, -0.1);
-	else if (keycode == KEY_PITCH_A)
+	else if (keycode == KEY_PITCH_Q)
 		camera_rotate_yaw(camera, 0.1);
 	else
 		return (false);
