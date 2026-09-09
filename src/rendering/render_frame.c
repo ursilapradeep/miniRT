@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: us <us@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 17:16:42 by us                #+#    #+#             */
-/*   Updated: 2026/09/01 17:27:25 by us               ###   ########.fr       */
+/*   Updated: 2026/09/07 12:54:40 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	render_frame(t_app *app)
 		return ;
 	image = image_from_mlx(app->mlx);
 	render_scene(app->scene, &image);
+	draw_axes(app);
 	mlx_put_image_to_window(app->mlx->mlx, app->mlx->win,
 		app->mlx->img, 0, 0);
+	draw_axes_labels(app);
 }

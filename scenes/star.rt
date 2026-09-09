@@ -1,0 +1,36 @@
+A 0.15 255,255,255
+C 0,0,-120 0,0,1 70
+L -60,60,-40 0.8 255,240,200
+
+# Sun (bright yellow)
+sp 0,0,40 12 255,220,80
+
+# Mercury (orbit radius 18)
+sp 18,0,40 2 169,169,169
+
+# Venus (orbit radius 26)
+sp 26,10,40 3 238,221,130
+
+# Earth (orbit radius 34)
+sp 34,-8,40 3.5 70,130,180
+
+# Mars (orbit radius 42)
+sp 42,6,40 2.5 188,74,60
+
+# Jupiter (orbit radius 60)
+sp 60,-12,40 7 210,140,80
+
+# Saturn (orbit radius 72)
+sp 72,14,40 6 222,206,158
+
+# Uranus (orbit radius 84)
+sp 84,-16,40 5 175,238,238
+
+# Neptune (orbit radius 96)
+sp 96,18,40 5 72,61,139
+
+# Pluto (orbit radius 108)
+sp 108,-20,40 2 255,250,230
+
+# Background plane (space)
+pl 0,0,200 0,0,-1 10,10,20

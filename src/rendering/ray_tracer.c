@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tracer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spaipur- <spaipur-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: us <us@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 11:17:32 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/09/03 12:00:00 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/09/08 12:59:38 by us               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
+#include "objects.h"
+#include "parse.h"
 #include <float.h>
 #include <math.h>
 
@@ -19,24 +20,34 @@
 # define M_PI 3.14159265358979323846
 #endif
 
+static t_vec3	camera_world_up(const t_vec3 forward)
+{
+	if (vec3_abs(vec3_dot(forward, (t_vec3){0.0, 1.0, 0.0})) > 0.999)
+		return ((t_vec3){0.0, 0.0, 1.0});
+	return ((t_vec3){0.0, 1.0, 0.0});
+}
+
 t_ray	make_camera_ray(const t_scene *scene, int x, int y)
 {
-	t_ray			ray;
-	double			fov;
-	double			u;
-	t_camera_basis	basis;
+	t_vec3	forward;
+	t_vec3	right;
+	t_vec3	up;
+	t_ray	ray;
+	double	fov;
 
 	ray.origin = scene->camera.coordinates;
-	basis = camera_get_basis(&scene->camera);
+	forward = vec3_normalize(scene->camera.direction);
+	right = vec3_normalize(vec3_cross(camera_world_up(forward), forward));
+	up = vec3_normalize(vec3_cross(forward, right));
 	fov = tan((scene->camera.fov * M_PI / 180.0) / 2.0);
-	u = (((double)x + 0.5) / (double)WIN_WIDTH) * 2.0 - 1.0;
-	ray.direction = vec3_scale(basis.right,
-			u * fov * ((double)WIN_WIDTH / (double)WIN_HEIGHT));
-	u = 1.0 - (((double)y + 0.5) / (double)WIN_HEIGHT) * 2.0;
-	ray.direction = vec3_add(basis.forward, ray.direction);
+	ray.direction = vec3_add(forward,
+			vec3_scale(right,
+				((((double)x + 0.5) / (double)WIN_WIDTH) * 2.0 - 1.0)
+				* fov * ((double)WIN_WIDTH / (double)WIN_HEIGHT)));
 	ray.direction = vec3_add(ray.direction,
-			vec3_scale(basis.up, u * fov));
-	ray.direction = vec3_add(ray.direction, basis.forward);
+			vec3_scale(up,
+				((1.0 - (((double)y + 0.5) / (double)WIN_HEIGHT)
+						* 2.0)) * fov));
 	ray.direction = vec3_normalize(ray.direction);
 	return (ray);
 }
@@ -65,7 +76,7 @@ double	ray_plane_intersection(t_ray ray, t_vec3 plane_point,
 }
 
 bool	hit_plane(const t_plane *pl, const t_ray *ray, t_range range,
-			t_hit *hit)
+		t_hit *hit)
 {
 	double	t;
 

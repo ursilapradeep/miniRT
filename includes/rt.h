@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spaipur- <spaipur-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 14:11:55 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/09/03 14:11:57 by spaipur-         ###   ########.fr       */
+/*   Updated: 2026/09/07 15:26:29 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 
-# include "mlx.h"
 # include "objects.h"
 # include "camera.h"
 # include "parse.h"
+# include "mlx.h"
 
 # include <stdbool.h>
 # include <stdio.h>
@@ -25,7 +25,6 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define BLUE_COLOR 0x0000FF
-
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -41,6 +40,7 @@ typedef struct s_app
 {
 	t_mlx	*mlx;
 	t_scene	*scene;
+	t_object *selected_object;
 }	t_app;
 
 typedef struct s_range
@@ -51,6 +51,7 @@ typedef struct s_range
 
 /* hooks */
 int		handle_key(int keycode, void *param);
+int		handle_mouse(int button, int x, int y, void *param);
 int		handle_close(void *param);
 void	setup_hooks(t_app *app);
 void	destroy_app(t_app *app);
@@ -63,6 +64,10 @@ int		create_image(t_mlx *mlx);
 t_mlx	*start_mlx(t_app *app);
 void	render_color(t_mlx *mlx, const t_scene *scene);
 void	render_frame(t_app *app);
+void	draw_axes(t_app *app);
+void	draw_axes_labels(t_app *app);
+void	object_translate(t_object *object, t_vec3 delta);
+void	object_rotate(t_object *object, t_vec3 axis, double angle);
 
 /* ray tracing */
 t_ray	make_camera_ray(const t_scene *scene, int x, int y);

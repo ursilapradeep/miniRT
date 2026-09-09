@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: us <us@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 12:03:57 by uvadakku          #+#    #+#             */
-/*   Updated: 2026/09/01 18:23:30 by us               ###   ########.fr       */
+/*   Updated: 2026/09/07 13:40:02 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int	main(int argc, char **argv)
 	app.scene = parse_scene(argv[1]);
 	if (app.scene == NULL)
 		return (1);
+	app.selected_object = NULL;
 	if (start_mlx(&app) == NULL)
 	{
 		free_scene(app.scene);
