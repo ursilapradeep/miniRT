@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spaipur- <spaipur-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 14:11:55 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/09/07 15:26:29 by uvadakku         ###   ########.fr       */
+/*   Updated: 2026/09/09 14:52:42 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "camera.h"
 # include "parse.h"
 # include "mlx.h"
-
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -25,6 +24,7 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define BLUE_COLOR 0x0000FF
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -38,9 +38,9 @@ typedef struct s_mlx
 
 typedef struct s_app
 {
-	t_mlx	*mlx;
-	t_scene	*scene;
-	t_object *selected_object;
+	t_mlx		*mlx;
+	t_scene		*scene;
+	t_object	*selected_object;
 }	t_app;
 
 typedef struct s_range
@@ -55,6 +55,7 @@ int		handle_mouse(int button, int x, int y, void *param);
 int		handle_close(void *param);
 void	setup_hooks(t_app *app);
 void	destroy_app(t_app *app);
+void	reset_scene_state(t_app *app);
 
 /* mlx */
 t_mlx	*init_mlx(void);
