@@ -6,7 +6,7 @@
 /*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 12:37:29 by spaipur-          #+#    #+#             */
-/*   Updated: 2026/09/10 10:51:49 by uvadakku         ###   ########.fr       */
+/*   Updated: 2026/09/10 18:13:24 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ t_scene	*parse_scene(const char *scene_path)
 		free_scene(scene);
 		return (NULL);
 	}
-	scene->initial_camera = scene->camera;
 	ft_putstr_fd("Scene parsed successfully in ", 1);
 	ft_putendl_fd((char *)scene_path, 1);
 	return (scene);
