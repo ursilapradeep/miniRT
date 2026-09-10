@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: us <us@student.42.fr>                      +#+  +:+       +#+         #
+#    By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/03 12:00:06 by spaipur-          #+#    #+#              #
-#    Updated: 2026/09/08 10:08:45 by us               ###   ########.fr        #
+#    Updated: 2026/09/10 10:55:09 by uvadakku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := miniRT
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
-CPPFLAGS = -I$(INC_DIR) -I$(LIBFT_DIR)
+CPPFLAGS = -I. -I$(INC_DIR) -I$(LIBFT_DIR)
 
 SRC_DIR := src
 INC_DIR := includes
@@ -31,7 +31,6 @@ MLX_LIB := -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 else
 
 MLX_DIR := minilibx-linux
-MLX_ARCHIVE := minilibx-linux.tgz
 MLX_INC := -I$(MLX_DIR)
 MLX_LIB := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
 
@@ -42,6 +41,7 @@ SRC := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/hooking/key_handler.c \
 	$(SRC_DIR)/hooking/object_key_handler.c \
 	$(SRC_DIR)/hooking/mouse_handler.c \
+	$(SRC_DIR)/hooking/reset_handler.c \
 	$(SRC_DIR)/rendering/render.c \
 	$(SRC_DIR)/rendering/render_frame.c \
 	$(SRC_DIR)/camera/camera.c \
@@ -86,18 +86,14 @@ mlx:
 	@if [ "$(UNAME_S)" = "Darwin" ]; then \
 		$(MAKE) -C $(MLX_DIR); \
 	else \
-		if [ ! -d "$(MLX_DIR)" ] || [ ! -f "$(MLX_DIR)/Makefile" ]; then \
-			mkdir -p $(MLX_DIR); \
-			tar -xzf $(MLX_ARCHIVE) --strip-components=1 -C $(MLX_DIR); \
-		fi; \
 		$(MAKE) -C $(MLX_DIR); \
 	fi
 
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I$(INC_DIR) $(MLX_INC) -c $< -o $@
+%.o: %.c mlx
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(MLX_INC) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
