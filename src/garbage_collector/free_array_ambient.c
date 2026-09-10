@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_array_ambient.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uvadakku <uvadakku@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: uvadakku <uvadakku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 11:40:43 by uvadakku          #+#    #+#             */
-/*   Updated: 2026/07/27 11:41:21 by uvadakku         ###   ########.fr       */
+/*   Updated: 2026/09/10 15:49:12 by uvadakku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,4 @@ size_t	array_size(char **arr)
 	while (arr[len])
 		len++;
 	return (len);
-}
-
-void	free_array(char **arr)
-{
-	size_t	i;
-
-	if (!arr)
-		return ;
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
 }
